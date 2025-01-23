@@ -99,6 +99,7 @@ heroku config:set OPENAI_API_KEY=your_openai_api_key_here
 git push heroku master
 heroku open
 ```
+https://github.com/piyush182004/RISK-PREDICTION/blob/main/WhatsApp%20Image%202025-01-23%20at%2019.47.27%20(1).jpeg?raw=true
 
 ## 🎯 Future Improvements
 - 🌐 Add **user authentication** for personalized insights.
