@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CredArth - Get Your Credit Score</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #303030; /* Light Grey Background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Heading Styling */
+        .heading {
+            font-size: 1.8rem;
+            color: #4272F4; /* Theme Blue */
+            font-weight: bold;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .upload-section {
+            text-align: center;
+        }
+
+        .pdf-icon {
+            width: 120px; /* Enlarged Icon */
+            height: 120px;
+            margin-bottom: 15px;
+            filter: invert(28%) sepia(85%) saturate(1815%) hue-rotate(212deg) brightness(94%) contrast(101%);
+        }
+
+        .file-text {
+            font-size: 1.2rem; /* Slightly Larger Text */
+            color: #6B7280; /* Neutral Grey */
+            margin-top: 10px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .text-box {
+            width: 110%;
+            max-width: 600px;
+            height: 120px; /* Increased height for more content */
+            margin: 20px auto;
+            padding: 15px;
+            font-size: 1rem;
+            border: 2px solid #6B7280;
+            border-radius: 10px;
+            background-color: #f5f5f5; /* Lighter background for readability */
+            color: #303030;
+            resize: none; /* Prevent resizing */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Bottom Buttons Styling */
+        .button-container {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .file-label, .btn-primary {
+            display: block;
+            width: 200px;
+            padding: 10px 20px;
+            background-color: #4272F4;
+            color: white;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .file-label:hover, .btn-primary:hover {
+            background-color: #365EC9;
+            transform: scale(1.05);
+        }
+
+        /* Loader Styling */
+        .loader-container {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .loader {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #4272F4;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+        }
+
+        /* Spinner Animation */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Background Blur Effect */
+        .blur-background {
+            filter: blur(8px);
+            pointer-events: none; /* Disable interactions with blurred elements */
+        }
+    </style>
+</head>
+<body>
+    <!-- Heading -->
+    <h1 class="heading">Upload Your Transaction File</h1>
+
+    <!-- File Upload Section -->
+    <div class="upload-section" id="upload-section">
+        <img src="https://img.icons8.com/ios-filled/100/pdf.png" alt="PDF Icon" class="pdf-icon">
+        <p class="file-text" id="file-name">No PDF File Selected yet!</p>
+    </div>
+
+    <!-- Upload Form -->
+    <form action="/generate_report" method="post" enctype="multipart/form-data" class="upload-form" onsubmit="showLoader()">
+        <input type="file" id="pdf" name="pdf" required onchange="updateFileName(event)">
+        <textarea class="text-box" name="user_text" placeholder="Enter some additional details here like loans,income,etc......" required></textarea>
+        <div class="button-container">
+            <label for="pdf" class="file-label">Upload PDF</label>
+            <button type="submit" class="btn-primary">Submit</button>
+        </div>
+    </form>
+
+    <!-- Loader Container -->
+    <div class="loader-container" id="loader-container">
+        <div class="loader"></div>
+        <p>Loadingggg...</p>
+    </div>
+
+    <script>
+        // Function to update the file name text
+        function updateFileName(event) {
+            const fileNameElement = document.getElementById("file-name");
+            const fileInput = event.target;
+            const fileName = fileInput.files[0]?.name || "No PDF File Selected yet!";
+            fileNameElement.textContent = fileName;
+        }
+
+        // Function to show the loader and blur the background when the form is submitted
+        function showLoader() {
+            const loaderContainer = document.getElementById("loader-container");
+            const uploadSection = document.getElementById("upload-section");
+            loaderContainer.style.display = "block";
+            uploadSection.classList.add("blur-background");
+        }
+    </script>
+</body>
+</html>

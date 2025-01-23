@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Page - CredArth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Report Page - CredArth</h1>
+        <p><strong>Report Summary:</strong> {{ loan_prediction }}</p>
+
+        <br>
+        <br>
+        
+        <div class="text-center mt-3">
+            <a href="{{ url_for('download', filename=pdf_filename) }}" class="btn btn-success">Download PDF</a>
+        </div>
+
+        <br>
+        <br>
+
+      
+    
+        
+
+        <h4 class="text-center">Preview of the Report</h4>
+        <iframe src="{{ url_for('download', filename=pdf_filename) }}" width="100%" height="600"></iframe>
+<!-- 
+        <div class="text-center mt-3">
+            <a href="{{ url_for('download', filename=pdf_filename) }}" class="btn btn-success">Download PDF</a>
+        </div> -->
+        <br>
+        <br>
+        <br>
+    </div>
+</body>
+</html>

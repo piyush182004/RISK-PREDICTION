@@ -1,0 +1,6 @@
+flask
+PyMuPDF
+openai==0.28
+werkzeug
+reportlab
+pdf2image
