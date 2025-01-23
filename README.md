@@ -100,6 +100,8 @@ git push heroku master
 heroku open
 ```
 ![image](https://github.com/user-attachments/assets/0b5e8a07-5c89-4d28-a1dd-c0b5034eaaeb)
+![image](https://github.com/user-attachments/assets/d0701579-c770-40a9-821c-0b49624cf315)
+
 
 ## 🎯 Future Improvements
 - 🌐 Add **user authentication** for personalized insights.
